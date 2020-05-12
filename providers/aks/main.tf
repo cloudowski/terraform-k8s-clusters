@@ -1,7 +1,7 @@
 locals {
   k8s_context    = "azure-${var.cluster_name}"
   dns_prefix     = var.cluster_name
-  admin_username = "admin"
+  admin_username = var.admin_username
   # a small trick to set a dependency for configure_kubeconfig script
   aks_cluster_name = regex("${var.cluster_name}", azurerm_kubernetes_cluster.main.id)
 }
