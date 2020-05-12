@@ -25,3 +25,7 @@ variable "resource_group" {
 variable "public_ssh_key_file" {
   type = string
 }
+
+variable "admin_username" {
+  type = string
+}
