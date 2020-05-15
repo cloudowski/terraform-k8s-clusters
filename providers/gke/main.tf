@@ -74,13 +74,9 @@ module "gke" {
   regional                   = false
   master_authorized_networks = [
     {
-      cidr_block   = "89.64.88.207/32"
-      display_name = "TCH home"
-    },
-    # {
-    #   cidr_block   = "0.0.0.0/0"
-    #   display_name = "ALL"
-    # }
+      cidr_block   = "0.0.0.0/0"
+      display_name = "all"
+    }
   ]
 
   node_pools = [
