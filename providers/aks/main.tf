@@ -20,6 +20,7 @@ resource "azurerm_kubernetes_cluster" "main" {
   location            = data.azurerm_resource_group.main.location
   resource_group_name = data.azurerm_resource_group.main.name
   dns_prefix          = local.dns_prefix
+  kubernetes_version  = var.k8s_version
 
   linux_profile {
     admin_username = local.admin_username
