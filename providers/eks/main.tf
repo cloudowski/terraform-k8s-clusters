@@ -3,19 +3,13 @@ locals {
   k8s_context = "aws-${var.cluster_name}"
 }
 
-provider "aws" {
-  version = ">= 2.28.1"
-  region  = var.region
-  profile = var.aws_profile
-}
-
 // EKS modules modifies a configmap with auth info
-provider "kubernetes" {
-  load_config_file = true
-  version          = "~> 1.11"
-  config_path      = var.k8s_kubeconfig
-  config_context   = local.k8s_context
-}
+# provider "kubernetes" {
+#   load_config_file = true
+#   version          = "~> 1.11"
+#   config_path      = var.k8s_kubeconfig
+#   config_context   = local.k8s_context
+# }
 
 data "aws_eks_cluster" "cluster" {
   name = module.eks.cluster_id
@@ -116,4 +110,3 @@ resource "null_resource" "configure_kubeconfig" {
     }
   }
 }
-

@@ -15,7 +15,8 @@ variable "k8s_version" {
 }
 
 variable "k8s_kubeconfig" {
-  type = string
+  type    = string
+  default = ""
 }
 
 variable "region" {
@@ -59,5 +60,3 @@ variable "map_users" {
   default = [
   ]
 }
-
-
