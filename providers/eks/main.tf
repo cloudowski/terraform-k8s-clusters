@@ -86,18 +86,31 @@ module "eks" {
   vpc_id           = module.aws_vpc.vpc_id
   manage_aws_auth  = var.manage_aws_auth
 
-  worker_groups = [
-    {
-      name                          = "worker-group-1"
-      instance_type                 = var.worker_node_type
-      additional_userdata           = "echo foo bar"
-      asg_desired_capacity          = var.worker_node_count
-      additional_security_group_ids = [aws_security_group.worker_group_mgmt_one.id]
-      root_volume_type              = "gp2"
+  node_groups_defaults = {
+    ami_type  = "AL2_x86_64"
+    disk_size = 50
+  }
+  node_groups = {
+    nodepool1 = {
+      desired_capacity = var.worker_node_count
+      max_capacity     = 10
+      min_capacity     = 1
+      instance_types = [ var.worker_node_type ]
     }
-  ]
+  }
 
-  worker_additional_security_group_ids = [aws_security_group.all_worker_mgmt.id]
+  # worker_groups = [
+  #   {
+  #     name                          = "worker-group-1"
+  #     instance_type                 = var.worker_node_type
+  #     additional_userdata           = "echo foo bar"
+  #     asg_desired_capacity          = var.worker_node_count
+  #     additional_security_group_ids = [aws_security_group.worker_group_mgmt_one.id]
+  #     root_volume_type              = "gp2"
+  #   }
+  # ]
+  # worker_additional_security_group_ids = [aws_security_group.all_worker_mgmt.id]
+
   map_roles                            = var.map_roles
   map_users                            = var.map_users
   map_accounts                         = var.map_accounts
