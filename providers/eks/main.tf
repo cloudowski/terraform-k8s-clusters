@@ -84,6 +84,7 @@ module "eks" {
   cluster_version  = var.k8s_version
   write_kubeconfig = false
   vpc_id           = module.aws_vpc.vpc_id
+  manage_aws_auth  = var.manage_aws_auth
 
   worker_groups = [
     {

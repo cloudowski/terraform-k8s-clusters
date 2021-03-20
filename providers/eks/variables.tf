@@ -28,6 +28,10 @@ variable "aws_profile" {
   default = "default"
 }
 
+variable "manage_aws_auth" {
+  default = true
+}
+
 variable "map_accounts" {
   description = "Additional AWS account numbers to add to the aws-auth configmap."
   type        = list(string)
